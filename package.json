@@ -1,0 +1,9 @@
+{
+    "name": "teeny_logger",
+    "version": "1.0.0",
+    "urls": [
+        [ "teeny_logger/__init__.mpy", "build/__init__.mpy" ],
+        [ "teeny_logger/logger.mpy", "build/logger.mpy" ]
+    ],
+    "deps": []
+}
