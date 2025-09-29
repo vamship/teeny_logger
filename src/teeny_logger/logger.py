@@ -3,17 +3,19 @@ Minimal logger module that provides easy-to-use logging functionality. Logging
 can be globally enabled or disabled, and the log level can be set to control the
 verbosity of the output.
 """
-_MAX_LOG_LEVEL = 40 
+
+_MAX_LOG_LEVEL = 40
 _LOG_LEVEL = 20  # Default to INFO level
 _LOG_THRESHOLD = _MAX_LOG_LEVEL - _LOG_LEVEL
 
 
 class Logger:
-    """ Logger class that can be used to log messages on the terminal """
+    """Logger class that can be used to log messages on the terminal"""
+
     global _LOG_THRESHOLD
 
     def __init__(self, module: str):
-        """ Initializes the logger
+        """Initializes the logger
         :param module: The name of the module that is doing the logging.
         """
         self._module = module
@@ -24,7 +26,7 @@ class Logger:
         :param message: The message to log.
         """
         if _LOG_THRESHOLD >= 30:
-            print(f'{self._module}|DEBUG: {message}')
+            print(f"{self._module}|DEBUG: {message}")
 
     def info(self, message: str) -> None:
         """Log an info level message.
@@ -32,7 +34,7 @@ class Logger:
         :param message: The message to log.
         """
         if _LOG_THRESHOLD >= 20:
-            print(f'{self._module}| INFO: {message}')
+            print(f"{self._module}| INFO: {message}")
 
     def error(self, message: str) -> None:
         """Log an error level message.
@@ -40,7 +42,7 @@ class Logger:
         :param message: The message to log.
         """
         if _LOG_THRESHOLD >= 10:
-            print(f'{self._module}|ERROR: {message}')
+            print(f"{self._module}|ERROR: {message}")
 
 
 def set_log_level(level: int) -> None:
@@ -59,8 +61,9 @@ def set_log_level(level: int) -> None:
         _LOG_THRESHOLD = _MAX_LOG_LEVEL - _LOG_LEVEL
     else:
         raise ValueError(
-            f'Invalid log level [{level}]. Use 100 - DISABLED, 10 - DEBUG, 20 -INFO or 30 - ERROR.'
+            f"Invalid log level [{level}]. Use 100 - DISABLED, 10 - DEBUG, 20 -INFO or 30 - ERROR."
         )
+
 
 def disable_logging() -> None:
     """Disable all logging. This is equivalent to calling set_log_level(100)."""
