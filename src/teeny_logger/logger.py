@@ -61,7 +61,10 @@ def set_log_level(level: int) -> None:
         _LOG_THRESHOLD = _MAX_LOG_LEVEL - _LOG_LEVEL
     else:
         raise ValueError(
-            f"Invalid log level [{level}]. Use 100 - DISABLED, 10 - DEBUG, 20 -INFO or 30 - ERROR."
+            (
+                f"Invalid log level [{level}]. "
+                "Use 100 - DISABLED, 10 - DEBUG, 20 -INFO or 30 - ERROR."
+            )
         )
 
 

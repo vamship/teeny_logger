@@ -125,8 +125,9 @@ application.</p>
 </span><span id="L-2"><a href="#L-2"><span class="linenos">2</span></a><span class="sd">.. include:: ../../README.md</span>
 </span><span id="L-3"><a href="#L-3"><span class="linenos">3</span></a><span class="sd">    :end-before: # Installation</span>
 </span><span id="L-4"><a href="#L-4"><span class="linenos">4</span></a><span class="sd">&quot;&quot;&quot;</span>
-</span><span id="L-5"><a href="#L-5"><span class="linenos">5</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Logger&quot;</span><span class="p">,</span> <span class="s2">&quot;set_log_level&quot;</span><span class="p">]</span>
-</span><span id="L-6"><a href="#L-6"><span class="linenos">6</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">Logger</span><span class="p">,</span> <span class="n">set_log_level</span>
+</span><span id="L-5"><a href="#L-5"><span class="linenos">5</span></a>
+</span><span id="L-6"><a href="#L-6"><span class="linenos">6</span></a><span class="n">__all__</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;Logger&quot;</span><span class="p">,</span> <span class="s2">&quot;set_log_level&quot;</span><span class="p">]</span>
+</span><span id="L-7"><a href="#L-7"><span class="linenos">7</span></a><span class="kn">from</span><span class="w"> </span><span class="nn">.logger</span><span class="w"> </span><span class="kn">import</span> <span class="n">Logger</span><span class="p">,</span> <span class="n">set_log_level</span>
 </span></pre></div>
 
 
@@ -142,39 +143,40 @@ application.</p>
 
     </div>
     <a class="headerlink" href="#Logger"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Logger-12"><a href="#Logger-12"><span class="linenos">12</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Logger</span><span class="p">:</span>
-</span><span id="Logger-13"><a href="#Logger-13"><span class="linenos">13</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot; Logger class that can be used to log messages on the terminal &quot;&quot;&quot;</span>
-</span><span id="Logger-14"><a href="#Logger-14"><span class="linenos">14</span></a>    <span class="k">global</span> <span class="n">_LOG_THRESHOLD</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Logger-13"><a href="#Logger-13"><span class="linenos">13</span></a><span class="k">class</span><span class="w"> </span><span class="nc">Logger</span><span class="p">:</span>
+</span><span id="Logger-14"><a href="#Logger-14"><span class="linenos">14</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Logger class that can be used to log messages on the terminal&quot;&quot;&quot;</span>
 </span><span id="Logger-15"><a href="#Logger-15"><span class="linenos">15</span></a>
-</span><span id="Logger-16"><a href="#Logger-16"><span class="linenos">16</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-</span><span id="Logger-17"><a href="#Logger-17"><span class="linenos">17</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot; Initializes the logger</span>
-</span><span id="Logger-18"><a href="#Logger-18"><span class="linenos">18</span></a><span class="sd">        :param module: The name of the module that is doing the logging.</span>
-</span><span id="Logger-19"><a href="#Logger-19"><span class="linenos">19</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Logger-20"><a href="#Logger-20"><span class="linenos">20</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_module</span> <span class="o">=</span> <span class="n">module</span>
-</span><span id="Logger-21"><a href="#Logger-21"><span class="linenos">21</span></a>
-</span><span id="Logger-22"><a href="#Logger-22"><span class="linenos">22</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="Logger-23"><a href="#Logger-23"><span class="linenos">23</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Log a debug level message.</span>
-</span><span id="Logger-24"><a href="#Logger-24"><span class="linenos">24</span></a>
-</span><span id="Logger-25"><a href="#Logger-25"><span class="linenos">25</span></a><span class="sd">        :param message: The message to log.</span>
-</span><span id="Logger-26"><a href="#Logger-26"><span class="linenos">26</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Logger-27"><a href="#Logger-27"><span class="linenos">27</span></a>        <span class="k">if</span> <span class="n">_LOG_THRESHOLD</span> <span class="o">&gt;=</span> <span class="mi">30</span><span class="p">:</span>
-</span><span id="Logger-28"><a href="#Logger-28"><span class="linenos">28</span></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="si">}</span><span class="s1">|DEBUG: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</span><span id="Logger-29"><a href="#Logger-29"><span class="linenos">29</span></a>
-</span><span id="Logger-30"><a href="#Logger-30"><span class="linenos">30</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="Logger-31"><a href="#Logger-31"><span class="linenos">31</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Log an info level message.</span>
-</span><span id="Logger-32"><a href="#Logger-32"><span class="linenos">32</span></a>
-</span><span id="Logger-33"><a href="#Logger-33"><span class="linenos">33</span></a><span class="sd">        :param message: The message to log.</span>
-</span><span id="Logger-34"><a href="#Logger-34"><span class="linenos">34</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Logger-35"><a href="#Logger-35"><span class="linenos">35</span></a>        <span class="k">if</span> <span class="n">_LOG_THRESHOLD</span> <span class="o">&gt;=</span> <span class="mi">20</span><span class="p">:</span>
-</span><span id="Logger-36"><a href="#Logger-36"><span class="linenos">36</span></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="si">}</span><span class="s1">| INFO: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
-</span><span id="Logger-37"><a href="#Logger-37"><span class="linenos">37</span></a>
-</span><span id="Logger-38"><a href="#Logger-38"><span class="linenos">38</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="Logger-39"><a href="#Logger-39"><span class="linenos">39</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Log an error level message.</span>
-</span><span id="Logger-40"><a href="#Logger-40"><span class="linenos">40</span></a>
-</span><span id="Logger-41"><a href="#Logger-41"><span class="linenos">41</span></a><span class="sd">        :param message: The message to log.</span>
-</span><span id="Logger-42"><a href="#Logger-42"><span class="linenos">42</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Logger-43"><a href="#Logger-43"><span class="linenos">43</span></a>        <span class="k">if</span> <span class="n">_LOG_THRESHOLD</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
-</span><span id="Logger-44"><a href="#Logger-44"><span class="linenos">44</span></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="si">}</span><span class="s1">|ERROR: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+</span><span id="Logger-16"><a href="#Logger-16"><span class="linenos">16</span></a>    <span class="k">global</span> <span class="n">_LOG_THRESHOLD</span>
+</span><span id="Logger-17"><a href="#Logger-17"><span class="linenos">17</span></a>
+</span><span id="Logger-18"><a href="#Logger-18"><span class="linenos">18</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="Logger-19"><a href="#Logger-19"><span class="linenos">19</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the logger</span>
+</span><span id="Logger-20"><a href="#Logger-20"><span class="linenos">20</span></a><span class="sd">        :param module: The name of the module that is doing the logging.</span>
+</span><span id="Logger-21"><a href="#Logger-21"><span class="linenos">21</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Logger-22"><a href="#Logger-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_module</span> <span class="o">=</span> <span class="n">module</span>
+</span><span id="Logger-23"><a href="#Logger-23"><span class="linenos">23</span></a>
+</span><span id="Logger-24"><a href="#Logger-24"><span class="linenos">24</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="Logger-25"><a href="#Logger-25"><span class="linenos">25</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Log a debug level message.</span>
+</span><span id="Logger-26"><a href="#Logger-26"><span class="linenos">26</span></a>
+</span><span id="Logger-27"><a href="#Logger-27"><span class="linenos">27</span></a><span class="sd">        :param message: The message to log.</span>
+</span><span id="Logger-28"><a href="#Logger-28"><span class="linenos">28</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Logger-29"><a href="#Logger-29"><span class="linenos">29</span></a>        <span class="k">if</span> <span class="n">_LOG_THRESHOLD</span> <span class="o">&gt;=</span> <span class="mi">30</span><span class="p">:</span>
+</span><span id="Logger-30"><a href="#Logger-30"><span class="linenos">30</span></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="si">}</span><span class="s2">|DEBUG: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="Logger-31"><a href="#Logger-31"><span class="linenos">31</span></a>
+</span><span id="Logger-32"><a href="#Logger-32"><span class="linenos">32</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="Logger-33"><a href="#Logger-33"><span class="linenos">33</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Log an info level message.</span>
+</span><span id="Logger-34"><a href="#Logger-34"><span class="linenos">34</span></a>
+</span><span id="Logger-35"><a href="#Logger-35"><span class="linenos">35</span></a><span class="sd">        :param message: The message to log.</span>
+</span><span id="Logger-36"><a href="#Logger-36"><span class="linenos">36</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Logger-37"><a href="#Logger-37"><span class="linenos">37</span></a>        <span class="k">if</span> <span class="n">_LOG_THRESHOLD</span> <span class="o">&gt;=</span> <span class="mi">20</span><span class="p">:</span>
+</span><span id="Logger-38"><a href="#Logger-38"><span class="linenos">38</span></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="si">}</span><span class="s2">| INFO: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="Logger-39"><a href="#Logger-39"><span class="linenos">39</span></a>
+</span><span id="Logger-40"><a href="#Logger-40"><span class="linenos">40</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="Logger-41"><a href="#Logger-41"><span class="linenos">41</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Log an error level message.</span>
+</span><span id="Logger-42"><a href="#Logger-42"><span class="linenos">42</span></a>
+</span><span id="Logger-43"><a href="#Logger-43"><span class="linenos">43</span></a><span class="sd">        :param message: The message to log.</span>
+</span><span id="Logger-44"><a href="#Logger-44"><span class="linenos">44</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Logger-45"><a href="#Logger-45"><span class="linenos">45</span></a>        <span class="k">if</span> <span class="n">_LOG_THRESHOLD</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+</span><span id="Logger-46"><a href="#Logger-46"><span class="linenos">46</span></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="si">}</span><span class="s2">|ERROR: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -192,11 +194,11 @@ application.</p>
 
     </div>
     <a class="headerlink" href="#Logger.__init__"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Logger.__init__-16"><a href="#Logger.__init__-16"><span class="linenos">16</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
-</span><span id="Logger.__init__-17"><a href="#Logger.__init__-17"><span class="linenos">17</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot; Initializes the logger</span>
-</span><span id="Logger.__init__-18"><a href="#Logger.__init__-18"><span class="linenos">18</span></a><span class="sd">        :param module: The name of the module that is doing the logging.</span>
-</span><span id="Logger.__init__-19"><a href="#Logger.__init__-19"><span class="linenos">19</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Logger.__init__-20"><a href="#Logger.__init__-20"><span class="linenos">20</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_module</span> <span class="o">=</span> <span class="n">module</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Logger.__init__-18"><a href="#Logger.__init__-18"><span class="linenos">18</span></a>    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">module</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+</span><span id="Logger.__init__-19"><a href="#Logger.__init__-19"><span class="linenos">19</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Initializes the logger</span>
+</span><span id="Logger.__init__-20"><a href="#Logger.__init__-20"><span class="linenos">20</span></a><span class="sd">        :param module: The name of the module that is doing the logging.</span>
+</span><span id="Logger.__init__-21"><a href="#Logger.__init__-21"><span class="linenos">21</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Logger.__init__-22"><a href="#Logger.__init__-22"><span class="linenos">22</span></a>        <span class="bp">self</span><span class="o">.</span><span class="n">_module</span> <span class="o">=</span> <span class="n">module</span>
 </span></pre></div>
 
 
@@ -222,13 +224,13 @@ application.</p>
 
     </div>
     <a class="headerlink" href="#Logger.debug"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Logger.debug-22"><a href="#Logger.debug-22"><span class="linenos">22</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="Logger.debug-23"><a href="#Logger.debug-23"><span class="linenos">23</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Log a debug level message.</span>
-</span><span id="Logger.debug-24"><a href="#Logger.debug-24"><span class="linenos">24</span></a>
-</span><span id="Logger.debug-25"><a href="#Logger.debug-25"><span class="linenos">25</span></a><span class="sd">        :param message: The message to log.</span>
-</span><span id="Logger.debug-26"><a href="#Logger.debug-26"><span class="linenos">26</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Logger.debug-27"><a href="#Logger.debug-27"><span class="linenos">27</span></a>        <span class="k">if</span> <span class="n">_LOG_THRESHOLD</span> <span class="o">&gt;=</span> <span class="mi">30</span><span class="p">:</span>
-</span><span id="Logger.debug-28"><a href="#Logger.debug-28"><span class="linenos">28</span></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="si">}</span><span class="s1">|DEBUG: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Logger.debug-24"><a href="#Logger.debug-24"><span class="linenos">24</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">debug</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="Logger.debug-25"><a href="#Logger.debug-25"><span class="linenos">25</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Log a debug level message.</span>
+</span><span id="Logger.debug-26"><a href="#Logger.debug-26"><span class="linenos">26</span></a>
+</span><span id="Logger.debug-27"><a href="#Logger.debug-27"><span class="linenos">27</span></a><span class="sd">        :param message: The message to log.</span>
+</span><span id="Logger.debug-28"><a href="#Logger.debug-28"><span class="linenos">28</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Logger.debug-29"><a href="#Logger.debug-29"><span class="linenos">29</span></a>        <span class="k">if</span> <span class="n">_LOG_THRESHOLD</span> <span class="o">&gt;=</span> <span class="mi">30</span><span class="p">:</span>
+</span><span id="Logger.debug-30"><a href="#Logger.debug-30"><span class="linenos">30</span></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="si">}</span><span class="s2">|DEBUG: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -254,13 +256,13 @@ application.</p>
 
     </div>
     <a class="headerlink" href="#Logger.info"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Logger.info-30"><a href="#Logger.info-30"><span class="linenos">30</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="Logger.info-31"><a href="#Logger.info-31"><span class="linenos">31</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Log an info level message.</span>
-</span><span id="Logger.info-32"><a href="#Logger.info-32"><span class="linenos">32</span></a>
-</span><span id="Logger.info-33"><a href="#Logger.info-33"><span class="linenos">33</span></a><span class="sd">        :param message: The message to log.</span>
-</span><span id="Logger.info-34"><a href="#Logger.info-34"><span class="linenos">34</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Logger.info-35"><a href="#Logger.info-35"><span class="linenos">35</span></a>        <span class="k">if</span> <span class="n">_LOG_THRESHOLD</span> <span class="o">&gt;=</span> <span class="mi">20</span><span class="p">:</span>
-</span><span id="Logger.info-36"><a href="#Logger.info-36"><span class="linenos">36</span></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="si">}</span><span class="s1">| INFO: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Logger.info-32"><a href="#Logger.info-32"><span class="linenos">32</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="Logger.info-33"><a href="#Logger.info-33"><span class="linenos">33</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Log an info level message.</span>
+</span><span id="Logger.info-34"><a href="#Logger.info-34"><span class="linenos">34</span></a>
+</span><span id="Logger.info-35"><a href="#Logger.info-35"><span class="linenos">35</span></a><span class="sd">        :param message: The message to log.</span>
+</span><span id="Logger.info-36"><a href="#Logger.info-36"><span class="linenos">36</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Logger.info-37"><a href="#Logger.info-37"><span class="linenos">37</span></a>        <span class="k">if</span> <span class="n">_LOG_THRESHOLD</span> <span class="o">&gt;=</span> <span class="mi">20</span><span class="p">:</span>
+</span><span id="Logger.info-38"><a href="#Logger.info-38"><span class="linenos">38</span></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="si">}</span><span class="s2">| INFO: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -286,13 +288,13 @@ application.</p>
 
     </div>
     <a class="headerlink" href="#Logger.error"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="Logger.error-38"><a href="#Logger.error-38"><span class="linenos">38</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="Logger.error-39"><a href="#Logger.error-39"><span class="linenos">39</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Log an error level message.</span>
-</span><span id="Logger.error-40"><a href="#Logger.error-40"><span class="linenos">40</span></a>
-</span><span id="Logger.error-41"><a href="#Logger.error-41"><span class="linenos">41</span></a><span class="sd">        :param message: The message to log.</span>
-</span><span id="Logger.error-42"><a href="#Logger.error-42"><span class="linenos">42</span></a><span class="sd">        &quot;&quot;&quot;</span>
-</span><span id="Logger.error-43"><a href="#Logger.error-43"><span class="linenos">43</span></a>        <span class="k">if</span> <span class="n">_LOG_THRESHOLD</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
-</span><span id="Logger.error-44"><a href="#Logger.error-44"><span class="linenos">44</span></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="si">}</span><span class="s1">|ERROR: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="Logger.error-40"><a href="#Logger.error-40"><span class="linenos">40</span></a>    <span class="k">def</span><span class="w"> </span><span class="nf">error</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">message</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="Logger.error-41"><a href="#Logger.error-41"><span class="linenos">41</span></a><span class="w">        </span><span class="sd">&quot;&quot;&quot;Log an error level message.</span>
+</span><span id="Logger.error-42"><a href="#Logger.error-42"><span class="linenos">42</span></a>
+</span><span id="Logger.error-43"><a href="#Logger.error-43"><span class="linenos">43</span></a><span class="sd">        :param message: The message to log.</span>
+</span><span id="Logger.error-44"><a href="#Logger.error-44"><span class="linenos">44</span></a><span class="sd">        &quot;&quot;&quot;</span>
+</span><span id="Logger.error-45"><a href="#Logger.error-45"><span class="linenos">45</span></a>        <span class="k">if</span> <span class="n">_LOG_THRESHOLD</span> <span class="o">&gt;=</span> <span class="mi">10</span><span class="p">:</span>
+</span><span id="Logger.error-46"><a href="#Logger.error-46"><span class="linenos">46</span></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">_module</span><span class="si">}</span><span class="s2">|ERROR: </span><span class="si">{</span><span class="n">message</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
 </span></pre></div>
 
 
@@ -319,24 +321,27 @@ application.</p>
 
     </div>
     <a class="headerlink" href="#set_log_level"></a>
-            <div class="pdoc-code codehilite"><pre><span></span><span id="set_log_level-47"><a href="#set_log_level-47"><span class="linenos">47</span></a><span class="k">def</span><span class="w"> </span><span class="nf">set_log_level</span><span class="p">(</span><span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="set_log_level-48"><a href="#set_log_level-48"><span class="linenos">48</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Set the logging level globally. Changing this value instantly changes</span>
-</span><span id="set_log_level-49"><a href="#set_log_level-49"><span class="linenos">49</span></a><span class="sd">    the log levels for all logger instances.</span>
-</span><span id="set_log_level-50"><a href="#set_log_level-50"><span class="linenos">50</span></a>
-</span><span id="set_log_level-51"><a href="#set_log_level-51"><span class="linenos">51</span></a><span class="sd">    :param level: The logging level to set (10 for DEBUG, 20 for INFO, 30 for</span>
-</span><span id="set_log_level-52"><a href="#set_log_level-52"><span class="linenos">52</span></a><span class="sd">    ERROR, 100 for DISABLED).</span>
-</span><span id="set_log_level-53"><a href="#set_log_level-53"><span class="linenos">53</span></a><span class="sd">    &quot;&quot;&quot;</span>
-</span><span id="set_log_level-54"><a href="#set_log_level-54"><span class="linenos">54</span></a>    <span class="k">global</span> <span class="n">_MAX_LOG_LEVEL</span>
-</span><span id="set_log_level-55"><a href="#set_log_level-55"><span class="linenos">55</span></a>    <span class="k">global</span> <span class="n">_LOG_LEVEL</span>
-</span><span id="set_log_level-56"><a href="#set_log_level-56"><span class="linenos">56</span></a>    <span class="k">global</span> <span class="n">_LOG_THRESHOLD</span>
-</span><span id="set_log_level-57"><a href="#set_log_level-57"><span class="linenos">57</span></a>
-</span><span id="set_log_level-58"><a href="#set_log_level-58"><span class="linenos">58</span></a>    <span class="k">if</span> <span class="n">level</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">):</span>
-</span><span id="set_log_level-59"><a href="#set_log_level-59"><span class="linenos">59</span></a>        <span class="n">_LOG_LEVEL</span> <span class="o">=</span> <span class="n">level</span>
-</span><span id="set_log_level-60"><a href="#set_log_level-60"><span class="linenos">60</span></a>        <span class="n">_LOG_THRESHOLD</span> <span class="o">=</span> <span class="n">_MAX_LOG_LEVEL</span> <span class="o">-</span> <span class="n">_LOG_LEVEL</span>
-</span><span id="set_log_level-61"><a href="#set_log_level-61"><span class="linenos">61</span></a>    <span class="k">else</span><span class="p">:</span>
-</span><span id="set_log_level-62"><a href="#set_log_level-62"><span class="linenos">62</span></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
-</span><span id="set_log_level-63"><a href="#set_log_level-63"><span class="linenos">63</span></a>            <span class="sa">f</span><span class="s1">&#39;Invalid log level [</span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s1">]. Use 100 - DISABLED, 10 - DEBUG, 20 -INFO or 30 - ERROR.&#39;</span>
-</span><span id="set_log_level-64"><a href="#set_log_level-64"><span class="linenos">64</span></a>        <span class="p">)</span>
+            <div class="pdoc-code codehilite"><pre><span></span><span id="set_log_level-49"><a href="#set_log_level-49"><span class="linenos">49</span></a><span class="k">def</span><span class="w"> </span><span class="nf">set_log_level</span><span class="p">(</span><span class="n">level</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="set_log_level-50"><a href="#set_log_level-50"><span class="linenos">50</span></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;Set the logging level globally. Changing this value instantly changes</span>
+</span><span id="set_log_level-51"><a href="#set_log_level-51"><span class="linenos">51</span></a><span class="sd">    the log levels for all logger instances.</span>
+</span><span id="set_log_level-52"><a href="#set_log_level-52"><span class="linenos">52</span></a>
+</span><span id="set_log_level-53"><a href="#set_log_level-53"><span class="linenos">53</span></a><span class="sd">    :param level: The logging level to set (10 for DEBUG, 20 for INFO, 30 for</span>
+</span><span id="set_log_level-54"><a href="#set_log_level-54"><span class="linenos">54</span></a><span class="sd">    ERROR, 100 for DISABLED).</span>
+</span><span id="set_log_level-55"><a href="#set_log_level-55"><span class="linenos">55</span></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="set_log_level-56"><a href="#set_log_level-56"><span class="linenos">56</span></a>    <span class="k">global</span> <span class="n">_MAX_LOG_LEVEL</span>
+</span><span id="set_log_level-57"><a href="#set_log_level-57"><span class="linenos">57</span></a>    <span class="k">global</span> <span class="n">_LOG_LEVEL</span>
+</span><span id="set_log_level-58"><a href="#set_log_level-58"><span class="linenos">58</span></a>    <span class="k">global</span> <span class="n">_LOG_THRESHOLD</span>
+</span><span id="set_log_level-59"><a href="#set_log_level-59"><span class="linenos">59</span></a>
+</span><span id="set_log_level-60"><a href="#set_log_level-60"><span class="linenos">60</span></a>    <span class="k">if</span> <span class="n">level</span> <span class="ow">in</span> <span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">):</span>
+</span><span id="set_log_level-61"><a href="#set_log_level-61"><span class="linenos">61</span></a>        <span class="n">_LOG_LEVEL</span> <span class="o">=</span> <span class="n">level</span>
+</span><span id="set_log_level-62"><a href="#set_log_level-62"><span class="linenos">62</span></a>        <span class="n">_LOG_THRESHOLD</span> <span class="o">=</span> <span class="n">_MAX_LOG_LEVEL</span> <span class="o">-</span> <span class="n">_LOG_LEVEL</span>
+</span><span id="set_log_level-63"><a href="#set_log_level-63"><span class="linenos">63</span></a>    <span class="k">else</span><span class="p">:</span>
+</span><span id="set_log_level-64"><a href="#set_log_level-64"><span class="linenos">64</span></a>        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+</span><span id="set_log_level-65"><a href="#set_log_level-65"><span class="linenos">65</span></a>            <span class="p">(</span>
+</span><span id="set_log_level-66"><a href="#set_log_level-66"><span class="linenos">66</span></a>                <span class="sa">f</span><span class="s2">&quot;Invalid log level [</span><span class="si">{</span><span class="n">level</span><span class="si">}</span><span class="s2">]. &quot;</span>
+</span><span id="set_log_level-67"><a href="#set_log_level-67"><span class="linenos">67</span></a>                <span class="s2">&quot;Use 100 - DISABLED, 10 - DEBUG, 20 -INFO or 30 - ERROR.&quot;</span>
+</span><span id="set_log_level-68"><a href="#set_log_level-68"><span class="linenos">68</span></a>            <span class="p">)</span>
+</span><span id="set_log_level-69"><a href="#set_log_level-69"><span class="linenos">69</span></a>        <span class="p">)</span>
 </span></pre></div>
 
 
